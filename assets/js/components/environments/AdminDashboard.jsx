@@ -23,10 +23,6 @@ class AdminDashboard extends Component {
       <article>
         <h1>Admin Dashboard</h1>
 
-        <p>This is where the adminstrator will create and manage surveys.</p>
-        <p>At present, the administrator's mood is:</p>
-        <pre>{this.props.admin.mood}</pre>
-
         <SurveyBuilder
           surveyBuilder={this.props.surveyBuilder}
           dispatch={this.props.dispatch} />
