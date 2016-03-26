@@ -13,7 +13,7 @@ VALUES (1, '2016 Norfolk Mayor & Council Race');
 --------------
 -- Category --
 --------------
-INSERT INTO category (id, category_name) VALUES 
+INSERT INTO category (id, category_name) VALUES
 (1, 'Transportation'),
 (2, 'Economic Development'),
 (3, 'City Engagement & Government'),

@@ -37,16 +37,20 @@ module.exports = function (server) {
       handler: (request, reply) => {
         var survey_answer = new SurveyAnswer()
 
-        survey_answer
-          .save({
-            survey_response_id: request.payload.surveyResponseId,
-            question_id: request.payload.questionId,
-            answer_id: request.payload.answerId
+        Promise.all([
+          request.payload.responses.map(answer => {
+            survey_answer.save({
+              survey_response_id: answer.surveyResponseId,
+              question_id: answer.questionId,
+              answer_id: answer.answerId,
+              intensity: answer.intensity
+            })
           })
-          .then(function (newSurveyAnswer) {
-            reply(newSurveyAnswer)
-          })
-          .catch()
+        ])
+        .then(function (newSurveyAnswer) {
+          reply(newSurveyAnswer)
+        })
+        .catch()
       }
     },
     {

@@ -10,16 +10,19 @@ import {
   TOGGLE_SURVEY_BUILDER_QUESTION_EDITABLE,
   UPDATE_SURVEY_BUILDER_QUESTION,
   SELECT_SURVEY_QUESTION_RESPONSE,
+  SELECT_SURVEY_QUESTION_RESPONSE_INTENSITY,
   FETCH_GEOGRAPHY_REQUEST,
   SUBMIT_STREET_ADDRESS_REQUEST,
   SUBMIT_STREET_ADDRESS_SUCCESS,
   SELECT_GEOGRAPHY,
   FETCH_GEOGRAPHY_SUCCESS,
   FETCH_GEOGRAPHY_FAILURE,
-  SUBMIT_STREET_ADDRESS_FAILURE
+  SUBMIT_STREET_ADDRESS_FAILURE,
+  FETCH_SURVEY_RESPONSE_ID_SUCCESS
 } from './survey-actions'
 
 const initialState = {
+  surveyResponseId: null,
   ward: {
     id: null,
     results: []
@@ -32,11 +35,11 @@ const initialState = {
   responses: []
 }
 
-function makeSurveyAnswer(selectedSurveyId, questionId, answer, intensity) {
+function makeSurveyAnswer(surveyResponseId, questionId, answer, intensity) {
   return Object.assign({}, {
-    survey_response_id: selectedSurveyId,
-    question_id: questionId,
-    answer_id: answer ? answer.id : undefined,
+    surveyResponseId: surveyResponseId,
+    questionId: questionId,
+    answerId: answer ? answer.id : undefined,
     intensity: intensity
   })
 }
@@ -153,7 +156,7 @@ export default function (state = initialState, action) {
 
       // If the question has already been answered, find the previous response
       found = state.responses.find(response => {
-        return response.question_id === action.questionId
+        return response.questionId === action.questionId
       })
 
       // If response doesn't exist in responses, add it.
@@ -162,7 +165,7 @@ export default function (state = initialState, action) {
           responses: [
             ...state.responses,
             makeSurveyAnswer(
-              state.selectedSurvey.id,
+              state.surveyResponseId,
               action.questionId,
               action.answer,
               action.intensity
@@ -174,12 +177,12 @@ export default function (state = initialState, action) {
       else if (found) {
         return Object.assign({}, state, {
           responses: state.responses.map(response => {
-            if (response.question_id === found.question_id) {
+            if (response.questionId === found.questionId) {
               if (action.type === SELECT_SURVEY_QUESTION_RESPONSE_INTENSITY) {
                 response.intensity = action.intensity
               }
               else if (action.type === SELECT_SURVEY_QUESTION_RESPONSE) {
-                response.answer_id = action.answer.id
+                response.answerId = action.answer.id
               }
             }
             return response
@@ -188,6 +191,11 @@ export default function (state = initialState, action) {
       }
       // otherwise just return state
       return state
+
+    case FETCH_SURVEY_RESPONSE_ID_SUCCESS:
+      return Object.assign({}, state, {
+        surveyResponseId: action.response.id
+      })
 
     default:
       return state
