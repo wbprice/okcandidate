@@ -26,6 +26,7 @@ import RaceManager from './ecosystems/RaceManager.jsx'
 import WardFinderPage from './ecosystems/WardFinderPage.jsx'
 import ResultsPage from './ecosystems/ResultsPage.jsx'
 import SurveyPage from './ecosystems/SurveyPage.jsx'
+import CandidateManager from './ecosystems/CandidateManager.jsx'
 
 ga.initialize(process.env.GOOGLE_ANALYTICS)
 browserHistory.listen(location => {
@@ -41,8 +42,9 @@ class App extends Component {
           <IndexRoute component={WardFinderPage} />
           <Route path="survey" component={SurveyPage} />
           <Route path="results/:id" component={ResultsPage} />
-          <Route path="admin" component={AdminDashboard}/>
-          <Route path="admin/races" component={RaceManager}/>
+          <Route path="admin" component={AdminDashboard} />
+          <Route path="admin/races" component={RaceManager} />
+          <Route path="admin/candidates" component={CandidateManager} />
           <Route path="login" component={AdminLogin} />
         </Route>
       </Router>

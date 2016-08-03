@@ -49,6 +49,19 @@ module.exports = (server) => {
     },
     {
       method: 'GET',
+      path: '/admin/candidates',
+      config: {
+        auth: {
+          strategy: 'standard',
+          scope: 'admin'
+        }
+      },
+      handler: {
+        view: 'Default'
+      }
+    },
+    {
+      method: 'GET',
       path: '/survey',
       handler: {
         view: 'Default'
