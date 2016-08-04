@@ -2,7 +2,7 @@
   "extends": "trails/react",
 
   "rules": {
-      "indent": ["warn", 2, { "SwitchCase": 2 }],
+      "indent": ["warn", 2],
       "no-unused-vars": ["warn", { "vars": "all", "args": "after-used"  }]
   },
 

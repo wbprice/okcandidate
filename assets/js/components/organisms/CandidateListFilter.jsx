@@ -4,7 +4,7 @@ class CandidateListFilter extends Component {
 
   render() {
     return (
-      <pre>CandidateList</pre>
+      <pre>CandidateListFilter</pre>
     )
   }
 

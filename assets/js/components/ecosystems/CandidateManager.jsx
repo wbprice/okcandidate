@@ -10,6 +10,8 @@ import {
   Grid
 } from 'react-bootstrap'
 
+import Card from './../atoms/Card.jsx'
+
 class CandidateManager extends Component {
 
   render() {
@@ -18,11 +20,15 @@ class CandidateManager extends Component {
         <Grid>
           <Row>
             <Col sm={5}>
-              <CandidateListFilter />
-              <CandidateList />
+              <Card>
+                <CandidateListFilter />
+                <CandidateList />
+              </Card>
             </Col>
             <Col sm={7}>
-              <NewCandidateForm />
+              <Card>
+                <NewCandidateForm />
+              </Card>
             </Col>
           </Row>
         </Grid>
