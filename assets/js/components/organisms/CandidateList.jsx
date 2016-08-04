@@ -3,7 +3,9 @@ import React, { PropTypes, Component } from 'react'
 class CandidateList extends Component {
 
   render() {
-    <pre>CandidateList</pre>
+    return (
+      <pre>CandidateList</pre>
+    )
   }
 
 }
