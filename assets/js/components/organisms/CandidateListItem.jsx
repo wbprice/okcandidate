@@ -21,6 +21,7 @@ const style = {
     margin: '0 .5em'
   },
   buttons: {
+    margin: '0 .5em',
     fontSize: '1.5em'
   }
 }
