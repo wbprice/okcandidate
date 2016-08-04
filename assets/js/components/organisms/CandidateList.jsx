@@ -4,12 +4,21 @@ class CandidateList extends Component {
 
   render() {
     return (
-      <pre>CandidateList</pre>
+      <div>
+        <label>Candidates</label>
+        {
+          this.props.items.map(item => {
+            return <pre>CandidateListItem</pre>
+          })
+        }
+      </div>
     )
   }
 
 }
 
-CandidateList.propTypes = {}
+CandidateList.propTypes = {
+  items: PropTypes.array
+}
 
 export default CandidateList

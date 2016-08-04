@@ -1,6 +1,7 @@
+import candidates from './mock-candidates'
 
 const intitialState = {
-  candidates: [],
+  items: candidates,
   newCandidate: {}
 }
 
@@ -8,8 +9,8 @@ export default function candidateReducer(state = intitialState, action) {
 
   switch (action.type) {
 
-    default:
-      return state
+  default:
+    return state
 
   }
 

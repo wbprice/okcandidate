@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 
+import { connect } from 'react-redux'
+
 import CandidateList from './../organisms/CandidateList.jsx'
 import CandidateListFilter from './../organisms/CandidateListFilter.jsx'
 import NewCandidateForm from './../organisms/NewCandidateForm.jsx'
@@ -14,7 +16,14 @@ import Card from './../atoms/Card.jsx'
 
 class CandidateManager extends Component {
 
+  getList() {
+    return this.props.candidate.items
+  }
+
   render() {
+
+    const candidates = this.getList()
+
     return (
       <section>
         <Grid>
@@ -22,7 +31,7 @@ class CandidateManager extends Component {
             <Col sm={5}>
               <Card>
                 <CandidateListFilter />
-                <CandidateList />
+                <CandidateList items={candidates} />
               </Card>
             </Col>
             <Col sm={7}>
@@ -39,6 +48,13 @@ class CandidateManager extends Component {
 
 }
 
-CandidateManager.propTypes = {}
+CandidateManager.propTypes = {
+  dispatch: PropTypes.func,
+  candidate: PropTypes.object
+}
 
-export default CandidateManager
+export default connect(
+  state => ({
+    candidate: state.candidate
+  })
+)(CandidateManager)
