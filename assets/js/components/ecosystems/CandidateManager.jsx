@@ -31,7 +31,7 @@ class CandidateManager extends Component {
             <Col sm={5}>
               <Card>
                 <CandidateListFilter />
-                <CandidateList items={candidates} />
+                <CandidateList candidates={candidates} />
               </Card>
             </Col>
             <Col sm={7}>

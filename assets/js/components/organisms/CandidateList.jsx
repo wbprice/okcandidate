@@ -1,16 +1,23 @@
 import React, { PropTypes, Component } from 'react'
 
+import CandidateListItem from './../organisms/CandidateListItem.jsx'
+import {
+  ListGroup
+} from 'react-bootstrap'
+
 class CandidateList extends Component {
 
   render() {
     return (
       <div>
         <label>Candidates</label>
-        {
-          this.props.items.map(item => {
-            return <pre>CandidateListItem</pre>
-          })
-        }
+        <ListGroup>
+          {
+            this.props.candidates.map(item => {
+              return <CandidateListItem candidate={item} />
+            })
+          }
+        </ListGroup>
       </div>
     )
   }
@@ -18,6 +25,7 @@ class CandidateList extends Component {
 }
 
 CandidateList.propTypes = {
+  candidates: PropTypes.array,
   items: PropTypes.array
 }
 
